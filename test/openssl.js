@@ -35,4 +35,15 @@ describe('openssl', function() {
     });
   });
 
+  it('should read accept string input', function(cb) {
+    var key = fs.readFileSync('test/key.pem');
+    openssl(['rsa', '-modulus', '-noout', '-passin', 'pass:'],
+      key,
+      function(err, out) {
+      if (err) return cb(err);
+      assert.equal(out.indexOf('Modulus='), 0);
+      cb();
+    });
+  });
+
 });
