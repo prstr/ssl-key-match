@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "description": "Check that RSA key matches SSL certificate and does not require password",
   "main": "index.js",
+  "dependencies": {
+    "which": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/prstr/ssl-key-match.git"
