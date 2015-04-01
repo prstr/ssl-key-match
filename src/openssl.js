@@ -9,8 +9,10 @@ var spawn = require('child_process').spawn
  * @param {string} input - (optional) string to pass to openssl's stdin
  * @param {string[]} argv - array of arguments
  * @param {function} cb - callback `function(err, out)`
+ * @module ssl-key-match/openssl
+ * @function openssl
  */
-module.exports = function(argv, input, cb) {
+var openssl = module.exports = exports = function(argv, input, cb) {
   which('openssl', function(err, openssl) {
     /* istanbul ignore if */
     if (err) return cb(err);
@@ -32,7 +34,16 @@ module.exports = function(argv, input, cb) {
       if (code > 0)
         cb(new Error(error));
       else
-        cb(null, output, error);
+        cb(null, output);
     });
   });
+};
+
+/**
+ * Same as {@link openssl}, but returns a function which accepts only callback.
+ *
+ * Convenient for {@link https://github.com/caolan/async}.
+ */
+openssl.thunk = function(argv, input) {
+  return openssl.bind(openssl, argv, input)
 };
