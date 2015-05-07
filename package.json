@@ -9,8 +9,15 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "fs-extra": "*"
+    "fs-extra": "*",
+    "eslint": "*",
+    "pre-commit": "*"
   },
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "mocha -R spec"
+  },
+  "pre-commit": [ "test" ],
   "repository": {
     "type": "git",
     "url": "https://github.com/prstr/ssl-key-match.git"

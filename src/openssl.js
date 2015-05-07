@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var spawn = require('child_process').spawn
   , which = require('which');
@@ -12,8 +12,8 @@ var spawn = require('child_process').spawn
  * @module ssl-key-match/openssl
  * @function openssl
  */
-var openssl = module.exports = exports = function(argv, input, cb) {
-  which('openssl', function(err, openssl) {
+var openssl = module.exports = exports = function (argv, input, cb) {
+  which('openssl', function (err, openssl) {
     /* istanbul ignore if */
     if (err) return cb(err);
     if (typeof input == 'function') {
@@ -24,13 +24,13 @@ var openssl = module.exports = exports = function(argv, input, cb) {
     var error = ''
       , output = '';
     child.stdin.end(input);
-    child.stdout.on('data', function(data) {
+    child.stdout.on('data', function (data) {
       output += data.toString('binary');
     });
-    child.stderr.on('data', function(data) {
+    child.stderr.on('data', function (data) {
       error += data.toString('binary');
     });
-    child.on('close', function(code) {
+    child.on('close', function (code) {
       if (code > 0)
         cb(new Error(error));
       else
@@ -44,6 +44,6 @@ var openssl = module.exports = exports = function(argv, input, cb) {
  *
  * Convenient for {@link https://github.com/caolan/async}.
  */
-openssl.thunk = function(argv, input) {
-  return openssl.bind(openssl, argv, input)
+openssl.thunk = function (argv, input) {
+  return openssl.bind(openssl, argv, input);
 };

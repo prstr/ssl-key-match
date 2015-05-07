@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 exports.openssl = require('./openssl');
 exports.match = require('./match');

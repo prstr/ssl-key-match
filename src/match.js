@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var openssl = require('./openssl')
   , async = require('async');
@@ -21,12 +21,12 @@ var openssl = require('./openssl')
  * @module ssl-key-match/match
  * @function match
  */
-var match = module.exports = exports = function(certPem, keyPem, cb) {
+module.exports = exports = function (certPem, keyPem, cb) {
 
   async.parallel([
     openssl.thunk(['x509', '-noout', '-modulus'], certPem),
     openssl.thunk(['rsa', '-noout', '-modulus', '-passin', 'pass:'], keyPem)
-  ], function(err, results) {
+  ], function (err, results) {
     /* istanbul ignore if */
     if (err) return cb(err);
     cb(null, results[0] == results[1]);
@@ -42,14 +42,14 @@ var match = module.exports = exports = function(certPem, keyPem, cb) {
  * @param {function} cb - callback `function(err, matches)`
  * @function files
  */
-exports.files = function(certFile, keyFile, cb) {
+exports.files = function (certFile, keyFile, cb) {
 
   async.parallel([
     openssl.thunk(['x509', '-noout', '-modulus', '-in', certFile]),
     openssl.thunk(['rsa', '-noout', '-modulus',
       '-in', keyFile,
       '-passin', 'pass:'])
-  ], function(err, results) {
+  ], function (err, results) {
     /* istanbul ignore if */
     if (err) return cb(err);
     cb(null, results[0] == results[1]);
