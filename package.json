@@ -1,6 +1,6 @@
 {
   "name": "ssl-key-match",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Check that RSA key matches SSL certificate and does not require password",
   "main": "index.js",
   "dependencies": {
@@ -17,7 +17,9 @@
     "pretest": "eslint .",
     "test": "mocha -R spec"
   },
-  "pre-commit": [ "test" ],
+  "pre-commit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/prstr/ssl-key-match.git"
