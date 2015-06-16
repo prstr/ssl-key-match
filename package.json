@@ -1,6 +1,6 @@
 {
   "name": "ssl-key-match",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Check that RSA key matches SSL certificate and does not require password",
   "main": "src/ndex.js",
   "dependencies": {
