@@ -4,7 +4,7 @@
   "description": "Check that RSA key matches SSL certificate and does not require password",
   "main": "src/index.js",
   "dependencies": {
-    "which": "*",
+    "which": "2.0.2",
     "async": "*"
   },
   "devDependencies": {
